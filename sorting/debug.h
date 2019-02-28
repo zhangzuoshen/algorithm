@@ -55,6 +55,11 @@ void printArray(int array[], int size, const char* name)
     printArray(array, size, "Output"); \
     printf("The current algorithm takes %6d ms.(%s)\n", (int)difftime(c_end, c_start), #name); \
 
+#else
+
+#define DEBUG_TIME_BEGIN()
+#define DEBUG_TIME_END(name)
+
 #endif
 
 #endif // DEBUG_H

@@ -16,27 +16,28 @@
  ** along with this program.  If not, see <http://www.gnu.org/licenses/>.
  **/
 
-#ifndef DEBUG_H
-#define DEBUG_H
+#ifndef LOOP_HPP
+#define LOOP_HPP
 
-#ifdef DEBUG_TIME
+#include "debug.h"
 
-#include <ctime>
+// 斐波那契数: 循环算法
+// 时间复杂度为 O(n)
+int fibonacci_loop(int n)
+{
+    DEBUG_TIME_BEGIN();
 
-#define DEBUG_TIME_BEGIN() \
-    clock_t time; \
-    time = clock(); \
+    int fibo = 1;
+    int fibo1 = 1;
+    int fibo2 = 0;
+    for(int i = 1; i < n; ++i) {
+        fibo = fibo1 + fibo2;
+        fibo2 = fibo1;
+        fibo1 = fibo;
+    }
 
-#define DEBUG_TIME_END(name) \
-    time = clock() - time; \
-    int duration = (int)(time * 1000 / CLOCKS_PER_SEC); \
-    printf("The current algorithm takes %3d ms.(%s)\n", duration, #name); \
+    DEBUG_TIME_END("FibonacciByLoop");
+    return fibo;
+}
 
-#else
-
-#define DEBUG_TIME_BEGIN()
-#define DEBUG_TIME_END(name)
-
-#endif
-
-#endif // DEBUG_H
+#endif // LOOP_HPP

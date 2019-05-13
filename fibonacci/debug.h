@@ -30,7 +30,7 @@
 #define DEBUG_TIME_END(name) \
     time = clock() - time; \
     int duration = (int)(time * 1000 / CLOCKS_PER_SEC); \
-    printf("The current algorithm takes %3d ms.(%s)\n", duration, #name); \
+    printf("The current algorithm takes %6d ms.(%s)\n", duration, #name); \
 
 #else
 

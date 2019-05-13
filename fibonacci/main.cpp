@@ -16,27 +16,20 @@
  ** along with this program.  If not, see <http://www.gnu.org/licenses/>.
  **/
 
-#ifndef DEBUG_H
-#define DEBUG_H
+#include <iostream>
 
-#ifdef DEBUG_TIME
+#define DEBUG_TIME
+#include "recursion.hpp"
+#include "loop.hpp"
+#include "matrix.hpp"
 
-#include <ctime>
+using namespace std;
 
-#define DEBUG_TIME_BEGIN() \
-    clock_t time; \
-    time = clock(); \
-
-#define DEBUG_TIME_END(name) \
-    time = clock() - time; \
-    int duration = (int)(time * 1000 / CLOCKS_PER_SEC); \
-    printf("The current algorithm takes %3d ms.(%s)\n", duration, #name); \
-
-#else
-
-#define DEBUG_TIME_BEGIN()
-#define DEBUG_TIME_END(name)
-
-#endif
-
-#endif // DEBUG_H
+int main()
+{
+    int n = 33;
+    cout << fibonacci_recursion(n) << endl;
+    cout << fibonacci_loop(n) << endl;
+    cout << fibonacci_matrix(n) << endl;
+    return 0;
+}

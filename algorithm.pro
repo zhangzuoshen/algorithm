@@ -2,4 +2,5 @@ TEMPLATE = subdirs
 
 SUBDIRS += \
     sorting \
-    power
+    power \
+    fibonacci

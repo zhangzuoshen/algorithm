@@ -16,27 +16,29 @@
  ** along with this program.  If not, see <http://www.gnu.org/licenses/>.
  **/
 
-#ifndef DEBUG_H
-#define DEBUG_H
+#ifndef RECURSION_HPP
+#define RECURSION_HPP
 
-#ifdef DEBUG_TIME
+#include "debug.h"
 
-#include <ctime>
+int fibo_recursion(int n)
+{
+    if(n == 1 || n == 2) {
+        return 1;
+    }
+    return fibo_recursion(n - 1) + fibo_recursion(n - 2);
+}
 
-#define DEBUG_TIME_BEGIN() \
-    clock_t time; \
-    time = clock(); \
+// 斐波那契数: 递归算法
+// 时间复杂度为 O(2^n)
+int fibonacci_recursion(int n)
+{
+    DEBUG_TIME_BEGIN();
 
-#define DEBUG_TIME_END(name) \
-    time = clock() - time; \
-    int duration = (int)(time * 1000 / CLOCKS_PER_SEC); \
-    printf("The current algorithm takes %3d ms.(%s)\n", duration, #name); \
+    n = fibo_recursion(n);
 
-#else
+    DEBUG_TIME_END("FibonacciByRecursion");
+    return n;
+}
 
-#define DEBUG_TIME_BEGIN()
-#define DEBUG_TIME_END(name)
-
-#endif
-
-#endif // DEBUG_H
+#endif // RECURSION_HPP

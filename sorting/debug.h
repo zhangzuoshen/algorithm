@@ -47,13 +47,14 @@ void printArray(int array[], int size, const char* name)
 #include <ctime>
 
 #define DEBUG_TIME_BEGIN() \
-    time_t c_start, c_end; \
-    c_start = clock(); \
+    clock_t time; \
+    time = clock(); \
 
 #define DEBUG_TIME_END(name) \
-    c_end = clock(); \
+    time = clock() - time; \
+    int duration = (int)(time * 1000 / CLOCKS_PER_SEC); \
     printArray(array, size, "Output"); \
-    printf("The current algorithm takes %6d ms.(%s)\n", (int)difftime(c_end, c_start), #name); \
+    printf("The current algorithm takes %6d ms.(%s)\n", duration, #name); \
 
 #else
 
